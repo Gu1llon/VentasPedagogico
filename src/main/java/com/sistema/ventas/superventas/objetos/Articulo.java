@@ -12,6 +12,23 @@ public class Articulo {
 	private LocalDateTime fechMod;
 	private int usrMod;
 	private int usrCrea;
+	
+	
+	public Articulo(int categoriaId, String nombre, String marca, int cantidad, int estado, LocalDateTime fechCreacion,
+			LocalDateTime fechMod, int usrMod, int usrCrea) {
+
+		this.categoriaId = categoriaId;
+		this.nombre = nombre;
+		this.marca = marca;
+		this.cantidad = cantidad;
+		this.estado = estado;
+		this.fechCreacion = fechCreacion;
+		this.fechMod = fechMod;
+		this.usrMod = usrMod;
+		this.usrCrea = usrCrea;
+		
+	
+	}
 	public int getCategoriaId() {
 		return categoriaId;
 	}
@@ -65,6 +82,12 @@ public class Articulo {
 	}
 	public void setUsrCrea(int usrCrea) {
 		this.usrCrea = usrCrea;
+	}
+	@Override
+	public String toString() {
+		return "Articulo [categoriaId=" + categoriaId + ", nombre=" + nombre + ", marca=" + marca + ", cantidad="
+				+ cantidad + ", estado=" + estado + ", fechCreacion=" + fechCreacion + ", fechMod=" + fechMod
+				+ ", usrMod=" + usrMod + ", usrCrea=" + usrCrea + "]";
 	}
 	
 	
