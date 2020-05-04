@@ -13,6 +13,10 @@ public class Articulo {
 	private int usrMod;
 	private int usrCrea;
 	
+
+	public Articulo() {
+		
+	}
 	
 	public Articulo(int categoriaId, String nombre, String marca, int cantidad, int estado, LocalDateTime fechCreacion,
 			LocalDateTime fechMod, int usrMod, int usrCrea) {
@@ -26,9 +30,9 @@ public class Articulo {
 		this.fechMod = fechMod;
 		this.usrMod = usrMod;
 		this.usrCrea = usrCrea;
-		
-	
 	}
+	
+	
 	public int getCategoriaId() {
 		return categoriaId;
 	}
