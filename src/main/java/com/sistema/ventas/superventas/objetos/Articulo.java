@@ -12,6 +12,24 @@ public class Articulo {
 	private LocalDateTime fechMod;
 	private int usrMod;
 	private int usrCrea;
+	
+	public Articulo() {
+		
+	}
+	
+	public Articulo(int categoriaId, String nombre, String marca, int cantidad, int estado, LocalDateTime fechCreacion,
+			LocalDateTime fechMod, int usrMod, int usrCrea) {
+		this.categoriaId = categoriaId;
+		this.nombre = nombre;
+		this.marca = marca;
+		this.cantidad = cantidad;
+		this.estado = estado;
+		this.fechCreacion = fechCreacion;
+		this.fechMod = fechMod;
+		this.usrMod = usrMod;
+		this.usrCrea = usrCrea;
+	}
+	
 	public int getCategoriaId() {
 		return categoriaId;
 	}
