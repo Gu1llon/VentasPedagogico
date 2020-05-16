@@ -10,7 +10,6 @@ public class Estado {
 	private LocalDateTime fechMod;
 	
 	public Estado(String nombre, int usrMod, int usrCrea, LocalDateTime fechCreacion, LocalDateTime fechMod) {
-		super();
 		this.nombre = nombre;
 		this.usrMod = usrMod;
 		this.usrCrea = usrCrea;

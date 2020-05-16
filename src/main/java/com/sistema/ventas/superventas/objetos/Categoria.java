@@ -12,7 +12,6 @@ public class Categoria {
 	
 	public Categoria(String nombre, int estado, int usrMod, int usrCrea, LocalDateTime fechCreacion,
 			LocalDateTime fechMod) {
-		super();
 		this.nombre = nombre;
 		this.estado = estado;
 		this.usrMod = usrMod;
