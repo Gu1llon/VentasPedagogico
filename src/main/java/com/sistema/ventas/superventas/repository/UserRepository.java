@@ -4,8 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.sistema.ventas.superventas.model.User;
 
-
-	public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Integer> {
 
 
 }
