@@ -3,6 +3,7 @@ package com.sistema.ventas.superventas.objetos;
 import java.time.LocalDateTime;
 
 public class Categoria {
+	private int categoriaId;
 	private String nombre;
 	private int estado;
 	private int usrMod;

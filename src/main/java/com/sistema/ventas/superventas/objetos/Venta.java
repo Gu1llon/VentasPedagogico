@@ -2,7 +2,15 @@ package com.sistema.ventas.superventas.objetos;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class Venta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int ventaId;
 	private String nombre;
 	private LocalDateTime fechVenta;
 	private int cantidad;
@@ -12,7 +20,7 @@ public class Venta {
 	private LocalDateTime fechCreacion;
 	private LocalDateTime fechMod;
 
-	public Venta(String nombre, LocalDateTime fechVenta, int cantidad, int cliente, int usrMod, int usrCrea,
+	public Venta(int ventaId, String nombre, LocalDateTime fechVenta, int cantidad, int cliente, int usrMod, int usrCrea,
 			LocalDateTime fechCreacion, LocalDateTime fechMod) {
 		this.nombre = nombre;
 		this.fechVenta = fechVenta;
@@ -22,6 +30,16 @@ public class Venta {
 		this.usrCrea = usrCrea;
 		this.fechCreacion = fechCreacion;
 		this.fechMod = fechMod;
+		this.ventaId = ventaId;
+		
+	}
+
+	public int getVentaId() {
+		return ventaId;
+	}
+
+	public void setVentaId(int ventaId) {
+		this.ventaId = ventaId;
 	}
 
 	public String getNombre() {
@@ -90,7 +108,7 @@ public class Venta {
 
 	@Override
 	public String toString() {
-		return "Venta [nombre=" + nombre + ", fechVenta=" + fechVenta + ", cantidad=" + cantidad + ", cliente="
+		return "Venta [ventaId=" + ventaId + ",  nombre=" + nombre + ", fechVenta=" + fechVenta + ", cantidad=" + cantidad + ", cliente="
 				+ cliente + ", usrMod=" + usrMod + ", usrCrea=" + usrCrea + ", fechCreacion=" + fechCreacion
 				+ ", fechMod=" + fechMod + "]";
 	}

@@ -3,6 +3,7 @@ package com.sistema.ventas.superventas.controller;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,26 @@ public class UserController {
 			userRepository.save(n);
 			return "Guardado con Éxito";
 		}
+		
+		@PostMapping(path = "/delete")
+		public @ResponseBody String deleteUser(@RequestParam int id) {
+
+			Optional<User> usuario = userRepository.findById(id);
+			if (!usuario.isPresent()) {
+				return "el usuario no existe";
+				
+			}
+			
+			
+		    User eliminado = usuario.get();
+		    eliminado.setEstado(2);
+		    eliminado.setFechMod(LocalDateTime.now());
+			userRepository.save(eliminado);
+			return "Eliminado con Éxito";
+		}
+		
+		
+		
 		
 		//TODO @Nelson
 		//agregar delete(logico) y update

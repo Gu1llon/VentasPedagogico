@@ -2,19 +2,37 @@ package com.sistema.ventas.superventas.objetos;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class Cliente {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int clienteId;
+
+
 	private String nombre;
 	private String apellido;
 	private String empresa;
 	private LocalDateTime fechCreacion;
 	private LocalDateTime fechMod;
 
-	public Cliente(String nombre, String apellido, String empresa, LocalDateTime fechCreacion, LocalDateTime fechMod) {
+	public Cliente(int clienteId, String nombre, String apellido, String empresa, LocalDateTime fechCreacion, LocalDateTime fechMod) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.empresa = empresa;
 		this.fechCreacion = fechCreacion;
 		this.fechMod = fechMod;
+		this.clienteId=clienteId;
+	}
+	public int getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(int clienteId) {
+		this.clienteId = clienteId;
 	}
 
 	public String getNombre() {

@@ -2,8 +2,15 @@ package com.sistema.ventas.superventas.objetos;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class Articulo {
-	private int categoriaId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int articuloId;
 	private String nombre;
 	private String marca;
 	private int cantidad;
@@ -13,15 +20,89 @@ public class Articulo {
 	private int usrMod;
 	private int usrCrea;
 	
+	
+	
+
+	public int getArticuloId() {
+		return articuloId;
+	}
+
+	public void setArticuloId(int articuloId) {
+		this.articuloId = articuloId;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
+	public LocalDateTime getFechCreacion() {
+		return fechCreacion;
+	}
+
+	public void setFechCreacion(LocalDateTime fechCreacion) {
+		this.fechCreacion = fechCreacion;
+	}
+
+	public LocalDateTime getFechMod() {
+		return fechMod;
+	}
+
+	public void setFechMod(LocalDateTime fechMod) {
+		this.fechMod = fechMod;
+	}
+
+	public int getUsrMod() {
+		return usrMod;
+	}
+
+	public void setUsrMod(int usrMod) {
+		this.usrMod = usrMod;
+	}
+
+	public int getUsrCrea() {
+		return usrCrea;
+	}
+
+	public void setUsrCrea(int usrCrea) {
+		this.usrCrea = usrCrea;
+	}
 
 	public Articulo() {
 		
 	}
 	
-	public Articulo(int categoriaId, String nombre, String marca, int cantidad, int estado, LocalDateTime fechCreacion,
+	public Articulo(int articuloId, String nombre, String marca, int cantidad, int estado, LocalDateTime fechCreacion,
 			LocalDateTime fechMod, int usrMod, int usrCrea) {
 
-		this.categoriaId = categoriaId;
+		this.articuloId = articuloId;
 		this.nombre = nombre;
 		this.marca = marca;
 		this.cantidad = cantidad;
@@ -33,63 +114,10 @@ public class Articulo {
 	}
 	
 	
-	public int getCategoriaId() {
-		return categoriaId;
-	}
-	public void setCategoriaId(int categoriaId) {
-		this.categoriaId = categoriaId;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getMarca() {
-		return marca;
-	}
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-	public int getCantidad() {
-		return cantidad;
-	}
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
-	public int getEstado() {
-		return estado;
-	}
-	public void setEstado(int estado) {
-		this.estado = estado;
-	}
-	public LocalDateTime getFechCreacion() {
-		return fechCreacion;
-	}
-	public void setFechCreacion(LocalDateTime fechCreacion) {
-		this.fechCreacion = fechCreacion;
-	}
-	public LocalDateTime getFechMod() {
-		return fechMod;
-	}
-	public void setFechMod(LocalDateTime fechMod) {
-		this.fechMod = fechMod;
-	}
-	public int getUsrMod() {
-		return usrMod;
-	}
-	public void setUsrMod(int usrMod) {
-		this.usrMod = usrMod;
-	}
-	public int getUsrCrea() {
-		return usrCrea;
-	}
-	public void setUsrCrea(int usrCrea) {
-		this.usrCrea = usrCrea;
-	}
+	
 	@Override
 	public String toString() {
-		return "Articulo [categoriaId=" + categoriaId + ", nombre=" + nombre + ", marca=" + marca + ", cantidad="
+		return "Articulo [articuloId=" + articuloId + ", nombre=" + nombre + ", marca=" + marca + ", cantidad="
 				+ cantidad + ", estado=" + estado + ", fechCreacion=" + fechCreacion + ", fechMod=" + fechMod
 				+ ", usrMod=" + usrMod + ", usrCrea=" + usrCrea + "]";
 	}
