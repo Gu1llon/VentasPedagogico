@@ -6,10 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 @Entity
+@Table(name="Venta")
+@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
 public class Venta {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq")
 	private int ventaId;
 	private String nombre;
 	private LocalDateTime fechVenta;
@@ -19,9 +23,18 @@ public class Venta {
 	private int usrCrea;
 	private LocalDateTime fechCreacion;
 	private LocalDateTime fechMod;
+	public int getEstado() {
+		return Estado;
+	}
+
+	public void setEstado(int estado) {
+		Estado = estado;
+	}
+
+	private int Estado;
 
 	public Venta(int ventaId, String nombre, LocalDateTime fechVenta, int cantidad, int cliente, int usrMod, int usrCrea,
-			LocalDateTime fechCreacion, LocalDateTime fechMod) {
+			LocalDateTime fechCreacion, LocalDateTime fechMod, int estado) {
 		this.nombre = nombre;
 		this.fechVenta = fechVenta;
 		this.cantidad = cantidad;
@@ -108,9 +121,10 @@ public class Venta {
 
 	@Override
 	public String toString() {
-		return "Venta [ventaId=" + ventaId + ",  nombre=" + nombre + ", fechVenta=" + fechVenta + ", cantidad=" + cantidad + ", cliente="
-				+ cliente + ", usrMod=" + usrMod + ", usrCrea=" + usrCrea + ", fechCreacion=" + fechCreacion
-				+ ", fechMod=" + fechMod + "]";
+		return "Venta [ventaId=" + ventaId + ", nombre=" + nombre + ", fechVenta=" + fechVenta + ", cantidad="
+				+ cantidad + ", cliente=" + cliente + ", usrMod=" + usrMod + ", usrCrea=" + usrCrea + ", fechCreacion="
+				+ fechCreacion + ", fechMod=" + fechMod + ", Estado=" + Estado + "]";
 	}
 
+	
 }

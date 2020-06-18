@@ -21,62 +21,114 @@ import com.sistema.ventas.superventas.model.User;
 import com.sistema.ventas.superventas.repository.UserRepository;
 
 @Controller
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/user/")
 @CrossOrigin("*")
 public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
 
-	@PostMapping(path = "/add")
-	public @ResponseBody String addNewUser(@RequestParam String nombre, @RequestParam String apellido,
-			@RequestParam String email) {
-
-		Iterable<User> usuarios = userRepository.findAll();
-		for (User user : usuarios) {
-			if (email.equals(user.getEmail())) {
-				return "El correo ingresado ya está en uso";
-			}
-		}
-
-		User n = new User();
-		n.setNombre(nombre);
-		n.setApellido(apellido);
-		n.setEmail(email);
-		n.setEstado(1);
-		n.setFechCreacion(LocalDateTime.now());
-		userRepository.save(n);
-		return "Guardado con Éxito";
-	}
+//	@PostMapping(path = "/add")
+//	public @ResponseBody String addNewUser(@RequestParam String nombre, @RequestParam String apellido,
+//			@RequestParam String email) {
+//
+//		Iterable<User> usuarios = userRepository.findAll();
+//		for (User user : usuarios) {
+//			if (email.equals(user.getEmail())) {
+//				return "El correo ingresado ya está en uso";
+//			}
+//		}
+//
+//		User n = new User();
+//		n.setNombre(nombre);
+//		n.setApellido(apellido);
+//		n.setEmail(email);
+//		n.setEstado(1);
+//		n.setFechCreacion(LocalDateTime.now());
+//		userRepository.save(n);
+//		return "Guardado con Éxito";
+//	}
 	
-	@PostMapping(value = "/save")
+	@PostMapping(value = "save")
 	public ResponseEntity<User> save(@RequestBody User user) {
 		user.setEstado(1);
 		user.setFechCreacion(LocalDateTime.now());
 		User obj = userRepository.save(user);
 		return new ResponseEntity<User>(obj, HttpStatus.OK);
 	}
-
-	@PostMapping(path = "/delete")
-	public @ResponseBody String deleteUser(@RequestParam int id) {
-
-		Optional<User> usuario = userRepository.findById(id);
+	
+	
+	
+	
+	@PostMapping(value = "delete")
+	public ResponseEntity<User> delete(@RequestBody User user) {
+		
+		Optional<User> usuario = userRepository.findById(user.getId());
 		if (!usuario.isPresent()) {
-			return "el usuario no existe";
-
+			return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
+		
 		}
+		else {
+		User userdlet = usuario.get();
+		userdlet.setEstado(2);
+		userdlet.setFechMod(LocalDateTime.now());
+		User obj = userRepository.save(userdlet);
+		return new ResponseEntity<User>(obj, HttpStatus.OK);
+	}
+	}
+	
 
-		User eliminado = usuario.get();
-		eliminado.setEstado(2);
-		eliminado.setFechMod(LocalDateTime.now());
-		userRepository.save(eliminado);
-		return "Eliminado con Éxito";
+	@PostMapping(value = "update")
+	public ResponseEntity<User> update(@RequestBody User user) {
+
+		
+		validaciondatos(user);
+		
+		Optional<User> usuario = userRepository.findById(user.getId());
+		if (!usuario.isPresent()) {
+			return new ResponseEntity<User>(user, HttpStatus.BAD_REQUEST);
+		
+		}
+		else {
+		//User userdlet = usuario.get();
+			user.setEstado(2);
+			user.setFechMod(LocalDateTime.now());
+		User obj = userRepository.save(user);
+		return new ResponseEntity<User>(obj, HttpStatus.OK);
+		}
+	}
+	
+private static String validaciondatos(User user) {
+		// TODO Auto-generated method stub
+		if(user.getNombre()== null || user.getApellido()==null || user.getEmail()== null) {
+			return "sdsdsd";
+		}
+		return null;
 	}
 
-	// TODO @Nelson
-	// agregar delete(logico) y update
 
-	@GetMapping(path = "/todos")
+
+
+//	@PostMapping(path = "/delete")
+//	public @ResponseBody String deleteUser(@RequestParam int id) {
+//
+//		Optional<User> usuario = userRepository.findById(id);
+//		if (!usuario.isPresent()) {
+//			return "el usuario no existe";
+//
+//		}
+//
+//		User eliminado = usuario.get();
+//		eliminado.setEstado(2);
+//		eliminado.setFechMod(LocalDateTime.now());
+//		userRepository.save(eliminado);
+//		return "Eliminado con Éxito";
+//	}
+
+	// TODO @Nelson
+	// queda pendiente update
+
+	@GetMapping(path = "todos")
 	public @ResponseBody Iterable<User> getAllUsers() {
 		return userRepository.findAll();
 	}

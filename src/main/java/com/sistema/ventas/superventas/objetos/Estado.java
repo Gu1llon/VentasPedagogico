@@ -6,10 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 @Entity
+@Table(name="Estado")
+@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
+
+
 public class Estado {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq")
 	private int estadoId;
 	private String nombre;
 	private int usrMod;

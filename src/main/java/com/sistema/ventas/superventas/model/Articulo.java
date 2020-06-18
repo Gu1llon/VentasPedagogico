@@ -1,4 +1,4 @@
-package com.sistema.ventas.superventas.objetos;
+package com.sistema.ventas.superventas.model;
 
 import java.time.LocalDateTime;
 
@@ -6,10 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 @Entity
+@Table(name="Articulo")
+@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
 public class Articulo {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq")
 	private int articuloId;
 	private String nombre;
 	private String marca;
@@ -87,7 +91,7 @@ public class Articulo {
 		this.usrMod = usrMod;
 	}
 
-	public int getUsrCrea() {
+	public Integer getUsrCrea() {
 		return usrCrea;
 	}
 
@@ -121,6 +125,8 @@ public class Articulo {
 				+ cantidad + ", estado=" + estado + ", fechCreacion=" + fechCreacion + ", fechMod=" + fechMod
 				+ ", usrMod=" + usrMod + ", usrCrea=" + usrCrea + "]";
 	}
+
+
 	
 	
 
