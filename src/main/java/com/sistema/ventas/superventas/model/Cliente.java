@@ -24,15 +24,21 @@ public class Cliente {
 	private String empresa;
 	private LocalDateTime fechCreacion;
 	private LocalDateTime fechMod;
+	private int estado;
 
-	public Cliente(int clienteId, String nombre, String apellido, String empresa, LocalDateTime fechCreacion, LocalDateTime fechMod) {
+	public Cliente(int clienteId, String nombre, String apellido, String empresa, LocalDateTime fechCreacion, LocalDateTime fechMod, int estado) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.empresa = empresa;
 		this.fechCreacion = fechCreacion;
 		this.fechMod = fechMod;
 		this.clienteId=clienteId;
+		this.estado = estado;
+		
+		
+		
 	}
+
 	public int getClienteId() {
 		return clienteId;
 	}
@@ -81,9 +87,20 @@ public class Cliente {
 		this.fechMod = fechMod;
 	}
 
-	public String toString() {
-		return "cliente [nombre=" + nombre + ", apellido=" + apellido + ", empresa=" + empresa + ", fechCreacion="
-				+ fechCreacion + ", fechMod=" + fechMod + "]";
+	public int getEstado() {
+		return estado;
 	}
 
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [clienteId=" + clienteId + ", nombre=" + nombre + ", apellido=" + apellido + ", empresa="
+				+ empresa + ", fechCreacion=" + fechCreacion + ", fechMod=" + fechMod + ", estado=" + estado + "]";
+	}
+	
+	
+	
 }

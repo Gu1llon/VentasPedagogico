@@ -82,7 +82,7 @@ public class UserController {
 	public ResponseEntity<User> update(@RequestBody User user) {
 
 		
-		validaciondatos(user);
+	
 		
 		Optional<User> usuario = userRepository.findById(user.getId());
 		if (!usuario.isPresent()) {
@@ -90,21 +90,15 @@ public class UserController {
 		
 		}
 		else {
-		//User userdlet = usuario.get();
-			user.setEstado(2);
-			user.setFechMod(LocalDateTime.now());
+		User userdlet = usuario.get();
+		user.setFechCreacion(userdlet.getFechCreacion());
+		user.setFechMod(LocalDateTime.now());
 		User obj = userRepository.save(user);
 		return new ResponseEntity<User>(obj, HttpStatus.OK);
 		}
 	}
 	
-private static String validaciondatos(User user) {
-		// TODO Auto-generated method stub
-		if(user.getNombre()== null || user.getApellido()==null || user.getEmail()== null) {
-			return "sdsdsd";
-		}
-		return null;
-	}
+
 
 
 

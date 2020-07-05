@@ -63,7 +63,6 @@ public class ClienteController {
 	public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
 
 		
-		validaciondatos(cliente);
 		
 		Optional<Cliente> client = clienteRepository.findById(cliente.getClienteId());
 		if (!client.isPresent()) {
@@ -77,40 +76,33 @@ public class ClienteController {
 		}
 	}
 	
-private static String validaciondatos(Cliente cliente) {
-		// TODO Auto-generated method stub
-		if(cliente.getNombre()== null || cliente.getApellido()==null || cliente.getEmpresa()== null) {
-			return "sdsdsd";
-		}
-		return null;
-	}
+
+
 //
 //
 //
+//	@PostMapping(path = "/delete")
+//	public @ResponseBody String deletecliente(@RequestParam int id) {
 //
-////	@PostMapping(path = "/delete")
-////	public @ResponseBody String deleteUser(@RequestParam int id) {
-////
-////		Optional<User> usuario = userRepository.findById(id);
-////		if (!usuario.isPresent()) {
-////			return "el usuario no existe";
-////
-////		}
-////
-////		User eliminado = usuario.get();
-////		eliminado.setEstado(2);
-////		eliminado.setFechMod(LocalDateTime.now());
-////		userRepository.save(eliminado);
-////		return "Eliminado con Éxito";
-////	}
+//		Optional<Cliente> cliente = clienteRepository.findById(id);
+//		if (!cliente.isPresent()) {
+//			return "el usuario no existe";
 //
-//	// TODO @Nelson
-//	// queda pendiente update
+//		}
 //
-//	@GetMapping(path = "todos")
-//	public @ResponseBody Iterable<User> getAllUsers() {
-//		return userRepository.findAll();
+//		Cliente eliminado = cliente.get();
+//		eliminado.setEstado(2);
+//		eliminado.setFechMod(LocalDateTime.now());
+//		clienteRepository.save(eliminado);
+//		return "Eliminado con Éxito";
 //	}
-//
+
+	
+
+	@GetMapping(path = "todos")
+	public @ResponseBody Iterable<Cliente> getAllCliente() {
+		return clienteRepository.findAll();
+	}
+
 
 }

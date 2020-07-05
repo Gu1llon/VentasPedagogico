@@ -65,7 +65,7 @@ public class ArticuloController {
 	public ResponseEntity<Articulo> update(@RequestBody Articulo articulo) {
 
 		
-		validaciondatos(articulo);
+	
 		
 		Optional<Articulo> arti = articuloRepository.findById(articulo.getArticuloId());
 		if (!arti.isPresent()) {
@@ -73,20 +73,14 @@ public class ArticuloController {
 		
 		}
 		else {
-			articulo.setEstado(2);
+			articulo.setFechCreacion(arti.get().getFechCreacion()); //articulo toma valor de fecha que trae arti desde BD
 			articulo.setFechMod(LocalDateTime.now());
 		Articulo obj = articuloRepository.save(articulo);
 		return new ResponseEntity<Articulo>(obj, HttpStatus.OK);
 		}
 	}
 	
-private static String validaciondatos(Articulo articulo) {
-		// TODO Auto-generated method stub
-		if(articulo.getNombre()== null || articulo.getMarca()==null || articulo.getCantidad()==0) {
-			return "sdsdsd";
-		}
-		return null;
-	}
+
 
 
 

@@ -1,8 +1,6 @@
 package com.sistema.ventas.superventas.controller;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sistema.ventas.superventas.model.Articulo;
 import com.sistema.ventas.superventas.objetos.Venta;
-import com.sistema.ventas.superventas.repository.ArticuloRepository;
 import com.sistema.ventas.superventas.repository.VentaRepository;
 
 
@@ -67,7 +63,7 @@ public class VentaController {
 	public ResponseEntity<Venta> update(@RequestBody Venta venta) {
 
 		
-		validaciondatos(venta);
+		
 		
 		Optional<Venta> vent = ventaRepository.findById(venta.getVentaId());
 		if (!vent.isPresent()) {
@@ -82,13 +78,7 @@ public class VentaController {
 		}
 	}
 	
-private static String validaciondatos(Venta venta) {
-		// TODO Auto-generated method stub
-		if(venta.getNombre()== null || venta.getCantidad()==0 || venta.getCliente()==0 ) {
-			return "sdsdsd";
-		}
-		return null;
-	}
+
 
 
 
